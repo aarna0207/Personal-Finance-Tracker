@@ -28,8 +28,10 @@ while True:
     print("2= Add Expense")
     print("3= View Balance")
     print("4= View Transactions")
-    print("5= Exit")
-    choice = input("Enter your choice (1-5): ")
+    print("5= Clear Transactions History")
+    print("6= Financial Summary")
+    print("7= Exit")
+    choice = input("Enter your choice (1-7): ")
     if choice == '1':
         income = float(input("Enter income amount: "))
         if income <= 0:
@@ -77,13 +79,41 @@ while True:
         if len(transactions) == 0:
             print("No transactions yet.")
         else:
-            for transaction in transactions:
-                 print(transaction)
+            for index, transaction in enumerate(transactions, start=1):
+             print(f"{index}. {transaction}")
     elif choice == '5':
+        print("Clearing transactions history...")
+        transactions.clear()
+        balance = 0
+        with open("transactions.txt", "w") as file:
+            file.write("")
+        print("Transactions history cleared.")
+    elif choice == '6':
+        
+     total_income = 0
+     total_expense = 0
+     print("-" * 40)
+     print("Financial Summary".center(40))
+     print("-" * 40)
+
+     for transaction in transactions:
+
+        parts = transaction.split()
+        amount = float(parts[1].replace("Rs.", ""))
+
+        if transaction.startswith("Income"):
+            total_income += amount
+
+        elif transaction.startswith("Expense"):
+            total_expense += amount
+        print(f"Total Income   : Rs.{total_income:.2f}")
+        print(f"Total Expense  : Rs.{total_expense:.2f}")
+        print(f"Current Balance: Rs.{balance:.2f}")
+        print("-" * 40)
         print("Exiting the Personal Finance Tracker. Goodbye!")
         break
     else:
-        print("Invalid choice. Please enter a number between 1 and 5.")
+      print("Invalid choice. Please enter a number between 1 and 5.")
 
     again = input("Do you want to see the menu again? (yes/no): ")
     if again.lower() != "yes":
