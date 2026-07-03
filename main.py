@@ -23,7 +23,9 @@ while True:
             continue
         else: 
             balance += income
-            transactions.append(("Income", income))
+            transactions.append(("Income:Rs.", income))
+            with open("transactions.txt", "a") as file:
+             file.write("Income: Rs.3000\n")
             print(f"Income of Rs.{income:.2f} added.")
     elif choice == '2':
         expense = float(input("Enter expense amount: "))
@@ -44,7 +46,7 @@ while True:
                 continue
             else:
                 balance-= expense
-                transactions.append(("Expense", expense))
+                transactions.append(("Expense:Rs.", expense))
                 print(f"Expense of Rs.{expense:.2f} added.")
     elif choice == '3':
         print(f"Current balance: Rs.{balance:.2f}")
@@ -56,7 +58,7 @@ while True:
             print("No transactions yet.")
         else:
             for transaction in transactions:
-                 print(f"{transaction[0]} : Rs.{transaction[1]:.2f}")
+                 print(transaction)
     elif choice == '5':
         print("Thank you for using Personal Finance Tracker!")
         break
