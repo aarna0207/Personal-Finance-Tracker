@@ -1,5 +1,23 @@
 balance = 0
 transactions = []
+try:
+    with open("transactions.txt", "r") as file:
+        transactions = file.readlines()
+
+        transactions = [transaction.strip() for transaction in transactions]
+
+except FileNotFoundError:
+    pass
+for transaction in transactions:
+    parts = transaction.split()
+
+    amount = float(parts[1].replace("Rs.", ""))
+
+    if transaction.startswith("Income"):
+        balance += amount
+
+    elif transaction.startswith("Expense"):
+        balance -= amount
 while True:
     print("-" * 40)
     print("Personal Finance Tracker".center(40))
@@ -18,14 +36,14 @@ while True:
             print("Income cannot be negative. Please enter a valid amount.")
             again = input("Do you want to see the menu again? (yes/no): ")
             if again.lower() != "yes":
-               print("Thank you for using Personal Finance Tracker!")
+               print("Exiting the Personal Finance Tracker. Goodbye!")
                break
             continue
         else: 
             balance += income
-            transactions.append(("Income:Rs.", income))
+            transactions.append(f"Income: Rs.{income:.2f}")
             with open("transactions.txt", "a") as file:
-             file.write("Income: Rs.3000\n")
+             file.write(f"Income: Rs.{income:.2f}\n")
             print(f"Income of Rs.{income:.2f} added.")
     elif choice == '2':
         expense = float(input("Enter expense amount: "))
@@ -46,7 +64,9 @@ while True:
                 continue
             else:
                 balance-= expense
-                transactions.append(("Expense:Rs.", expense))
+                transactions.append(f"Expense: Rs.{expense:.2f}")
+                with open("transactions.txt", "a") as file:
+                 file.write(f"Expense: Rs.{expense:.2f}\n")
                 print(f"Expense of Rs.{expense:.2f} added.")
     elif choice == '3':
         print(f"Current balance: Rs.{balance:.2f}")
@@ -60,12 +80,12 @@ while True:
             for transaction in transactions:
                  print(transaction)
     elif choice == '5':
-        print("Thank you for using Personal Finance Tracker!")
+        print("Exiting the Personal Finance Tracker. Goodbye!")
         break
     else:
         print("Invalid choice. Please enter a number between 1 and 5.")
 
     again = input("Do you want to see the menu again? (yes/no): ")
     if again.lower() != "yes":
-        print("Thank you for using Personal Finance Tracker!")
+        print("Exiting the Personal Finance Tracker. Goodbye!")
         break
