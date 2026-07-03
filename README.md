@@ -8,6 +8,7 @@ Features
 - Add Income
 - Add Expense
 - View Current Balance
+- View transaction history
 - Menu-driven interface
 - Continue or Exit option
 - Input validation for menu choices
@@ -21,7 +22,7 @@ Technologies Used
 How to Run
 1. Clone this repository.
 2. Open the project folder.
-3. Run the following command:
+3. Run the following command.
 
 Project Structure
 Personal-Finance-Tracker/
@@ -38,7 +39,6 @@ Python Concepts Used
 - String Formatting
 
 Future Improvements
-- Transaction History
 - Save Data to File
 - Monthly Expense Report
 - Graphical Charts
