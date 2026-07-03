@@ -9,6 +9,7 @@ Features
 - Add Expense
 - View Current Balance
 - View transaction history
+- Balance Recovery 
 - Menu-driven interface
 - Continue or Exit option
 - Input validation for menu choices
@@ -39,7 +40,6 @@ Python Concepts Used
 - String Formatting
 
 Future Improvements
-- Save Data to File
 - Monthly Expense Report
 - Graphical Charts
 - GUI using Tkinter
