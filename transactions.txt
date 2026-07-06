@@ -1,0 +1,4 @@
+Income Rs.40000.00
+Expense Rs.4500.00
+Expense Rs.14000.00
+Income Rs.2500.00
